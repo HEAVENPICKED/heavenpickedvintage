@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heaven Picked Vintage - Chilliwack, BC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-heading: 'Orbitron', sans-serif;
+            --font-body: 'Exo 2', sans-serif;
+            --color-primary: #007BFF; /* Deep Blue */
+            --color-secondary: #40E0D0; /* Turquoise */
+            --color-background: #0a0a0a; /* Modern Dark background */
+            --color-surface: #1a1a1a; /* For cards and modals */
+            --color-text: #EFEFEF;
+            --color-text-muted: #888;
+            --color-white: #FFFFFF;
+            --border-radius: 8px;
+            --transition-speed: 0.3s;
+        }
+
+        body {
+            font-family: var(--font-body);
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Navigation --- */
+        .main-header {
+            background-color: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--color-primary);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropbtn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.75rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            border: none;
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease, transform var(--transition-speed) ease;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+            transform: translateY(-2px);
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--color-surface);
+            min-width: 200px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+            z-index: 1;
+            border-radius: var(--border-radius);
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+            border: 1px solid #333;
+        }
+
+        .dropdown-content a {
+            color: var(--color-text);
+            padding: 0.75rem 1.25rem;
+            text-decoration: none;
+            display: block;
+            font-weight: 500;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* --- Page Sections --- */
+        .page-section {
+            padding: 4rem 1.5rem;
+            border-bottom: 1px solid #222;
+        }
+        .page-section:last-of-type {
+            border-bottom: none;
+        }
+        #products {
+            background-color: var(--color-surface);
+        }
+        #socials {
+            background-color: var(--color-surface);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            text-transform: uppercase;
+        }
+        h1 { font-size: 2.8rem; margin-bottom: 1rem; text-align: center; color: var(--color-white); text-shadow: 0 0 15px var(--color-secondary);}
+        h2 { font-size: 2.2rem; margin-bottom: 1.5rem; text-align: center; color: var(--color-secondary);}
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--color-primary);}
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        /* --- Home Section --- */
+        #home {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: var(--color-background) url('https://www.transparenttextures.com/patterns/carbon-fibre-v2.png');
+        }
+        .home-logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .home-logo-container img {
+            max-height: 100px;
+            border-radius: 50%;
+            border: 3px solid var(--color-secondary);
+            box-shadow: 0 0 25px rgba(64, 224, 208, 0.4);
+            transition: transform var(--transition-speed) ease;
+        }
+        .home-logo-container img:hover {
+            transform: scale(1.1);
+        }
+        .home-logo-container h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        /* --- Products Section --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.25rem;
+        }
+        .product-slot {
+            background-color: var(--color-background);
+            border: 2px solid #333;
+            border-radius: var(--border-radius);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease, border-color var(--transition-speed) ease;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text);
+            font-weight: 600;
+            padding: 0.5rem;
+            background-size: cover;
+            background-position: center;
+        }
+        .product-slot:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+            border-color: var(--color-primary);
+        }
+
+        /* --- Product Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: var(--color-surface);
+            margin: 5% auto;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #444;
+        }
+        .close-btn {
+            color: var(--color-text-muted);
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color var(--transition-speed) ease;
+        }
+        .close-btn:hover, .close-btn:focus {
+            color: var(--color-white);
+        }
+        .modal-product-image {
+            width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            border-radius: var(--border-radius);
+            margin-bottom: 1.5rem;
+            background-color: var(--color-background);
+        }
+        .modal-product-details h3 {
+            margin-top: 0;
+            color: var(--color-secondary);
+        }
+        .modal-product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+        .add-to-cart-btn, .styling-tips-btn {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+            display: block;
+            width: 100%;
+            margin-top: 0.75rem;
+            box-sizing: border-box;
+        }
+        .add-to-cart-btn:hover, .styling-tips-btn:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+        }
+        .styling-tips-btn {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+        }
+         .styling-tips-btn:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        #stylingTipsOutput {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: var(--color-background);
+            border-radius: var(--border-radius);
+            border: 1px solid #333;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        #stylingTipsOutput h4 {
+            margin-top: 0;
+            color: var(--color-secondary);
+            font-size: 1.1rem;
+        }
+        .loading-indicator {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--color-primary);
+            font-style: italic;
+        }
+
+        /* --- Other Sections --- */
+        #about .container, #socials .container, #contact .container {
+            text-align: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 1rem;
+            padding: 0.75rem 1.5rem;
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: var(--font-heading);
+            transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+            font-size: 1.1rem;
+        }
+        .social-links a:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+            transform: translateY(-3px);
+        }
+        
+        #contact .container {
+            max-width: 700px;
+        }
+         .contact-details {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--color-surface);
+            border-radius: var(--border-radius);
+        }
+        .map-container {
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 2px solid var(--color-primary);
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            text-align: left;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #333;
+            border-radius: var(--border-radius);
+            box-sizing: border-box;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background-color: var(--color-surface);
+            color: var(--color-text);
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+            box-shadow: 0 0 0 2px rgba(64, 224, 208, 0.3);
+        }
+        .contact-form button {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color var(--transition-speed) ease;
+        }
+        .contact-form button:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-background);
+        }
+        #form-message {
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        /* --- Footer --- */
+        .main-footer {
+            background-color: var(--color-surface);
+            color: var(--color-text-muted);
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-top: 1px solid #333;
+        }
+        .footer-logo {
+            max-height: 60px;
+            margin-bottom: 0.5rem;
+            opacity: 0.7;
+            transition: opacity var(--transition-speed) ease;
+        }
+        .footer-logo:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="nav-container">
+            <div class="dropdown">
+                <button class="dropbtn">Menu ☰</button>
+                <div class="dropdown-content">
+                    <a href="#home">Home</a>
+                    <a href="#products">Products</a>
+                    <a href="#about">About Us</a>
+                    <a href="#socials">Socials</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="page-section">
+            <div class="container">
+                <div class="home-logo-container">
+                    <img src="https://storage.googleapis.com/gemini-prod/images/211dcfd1-66bc-44c0-b864-6b90b89f4750" alt="Heaven Picked Vintage Logo">
+                    <h1>Heaven Picked Vintage</h1>
+                </div>
+                <p style="font-size: 1.2rem; font-weight: 600; color: var(--color-text);">Discover unique, hand-picked vintage clothing and accessories in Chilliwack, BC.</p>
+                <p>Timeless style, sustainably sourced. Your next treasure awaits!</p>
+            </div>
+        </section>
+
+        <section id="products" class="page-section">
+            <div class="container">
+                <h2>Our Collection</h2>
+                <p>Browse our curated selection of vintage finds. Click on any slot to see more details.</p>
+                <div class="product-grid">
+                    <div class="product-slot" style="background-image: url('https://storage.googleapis.com/gemini-prod/images/211dcfd1-66bc-44c0-b864-6b90b89f4750');" data-product-name="Official Logo Tee" data-product-price="$45.00" data-product-image="https://storage.googleapis.com/gemini-prod/images/211dcfd1-66bc-44c0-b864-6b90b89f4750" data-product-description="The classic Heaven Picked Vintage logo tee. Soft, comfortable, and stylish.">Logo Tee</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+2');" data-product-name="Vintage Item 2" data-product-price="$48.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+2" data-product-description="A detailed description for Vintage Item 2.">Item 2</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+3');" data-product-name="Vintage Item 3" data-product-price="$72.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+3" data-product-description="A detailed description for Vintage Item 3.">Item 3</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+4');" data-product-name="Vintage Item 4" data-product-price="$35.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+4" data-product-description="A detailed description for Vintage Item 4.">Item 4</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+5');" data-product-name="Vintage Item 5" data-product-price="$60.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+5" data-product-description="A detailed description for Vintage Item 5.">Item 5</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/E0F2F7/0a0a0a?text=Item+6');" data-product-name="Vintage Item 6" data-product-price="$80.00" data-product-image="https://placehold.co/600x700/E0F2F7/0a0a0a?text=Vintage+Item+6" data-product-description="A detailed description for Vintage Item 6.">Item 6</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+7');" data-product-name="Vintage Item 7" data-product-price="$45.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+7" data-product-description="A detailed description for Vintage Item 7.">Item 7</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+8');" data-product-name="Vintage Item 8" data-product-price="$58.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+8" data-product-description="A detailed description for Vintage Item 8.">Item 8</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+9');" data-product-name="Vintage Item 9" data-product-price="$90.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+9" data-product-description="A detailed description for Vintage Item 9.">Item 9</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+10');" data-product-name="Vintage Item 10" data-product-price="$25.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+10" data-product-description="A detailed description for Vintage Item 10.">Item 10</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/E0F2F7/0a0a0a?text=Item+11');" data-product-name="Vintage Item 11" data-product-price="$55.00" data-product-image="https://placehold.co/600x700/E0F2F7/0a0a0a?text=Vintage+Item+11" data-product-description="A detailed description for Vintage Item 11.">Item 11</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+12');" data-product-name="Vintage Item 12" data-product-price="$48.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+12" data-product-description="A detailed description for Vintage Item 12.">Item 12</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+13');" data-product-name="Vintage Item 13" data-product-price="$72.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+13" data-product-description="A detailed description for Vintage Item 13.">Item 13</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+14');" data-product-name="Vintage Item 14" data-product-price="$35.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+14" data-product-description="A detailed description for Vintage Item 14.">Item 14</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+15');" data-product-name="Vintage Item 15" data-product-price="$60.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+15" data-product-description="A detailed description for Vintage Item 15.">Item 15</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/E0F2F7/0a0a0a?text=Item+16');" data-product-name="Vintage Item 16" data-product-price="$80.00" data-product-image="https://placehold.co/600x700/E0F2F7/0a0a0a?text=Vintage+Item+16" data-product-description="A detailed description for Vintage Item 16.">Item 16</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+17');" data-product-name="Vintage Item 17" data-product-price="$45.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+17" data-product-description="A detailed description for Vintage Item 17.">Item 17</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+18');" data-product-name="Vintage Item 18" data-product-price="$58.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+18" data-product-description="A detailed description for Vintage Item 18.">Item 18</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+19');" data-product-name="Vintage Item 19" data-product-price="$90.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+19" data-product-description="A detailed description for Vintage Item 19.">Item 19</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+20');" data-product-name="Vintage Item 20" data-product-price="$25.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+20" data-product-description="A detailed description for Vintage Item 20.">Item 20</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/E0F2F7/0a0a0a?text=Item+21');" data-product-name="Vintage Item 21" data-product-price="$55.00" data-product-image="https://placehold.co/600x700/E0F2F7/0a0a0a?text=Vintage+Item+21" data-product-description="A detailed description for Vintage Item 21.">Item 21</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+22');" data-product-name="Vintage Item 22" data-product-price="$48.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+22" data-product-description="A detailed description for Vintage Item 22.">Item 22</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+23');" data-product-name="Vintage Item 23" data-product-price="$72.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+23" data-product-description="A detailed description for Vintage Item 23.">Item 23</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+24');" data-product-name="Vintage Item 24" data-product-price="$35.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+24" data-product-description="A detailed description for Vintage Item 24.">Item 24</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+25');" data-product-name="Vintage Item 25" data-product-price="$60.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+25" data-product-description="A detailed description for Vintage Item 25.">Item 25</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/E0F2F7/0a0a0a?text=Item+26');" data-product-name="Vintage Item 26" data-product-price="$80.00" data-product-image="https://placehold.co/600x700/E0F2F7/0a0a0a?text=Vintage+Item+26" data-product-description="A detailed description for Vintage Item 26.">Item 26</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/87CEEB/0a0a0a?text=Item+27');" data-product-name="Vintage Item 27" data-product-price="$45.00" data-product-image="https://placehold.co/600x700/87CEEB/0a0a0a?text=Vintage+Item+27" data-product-description="A detailed description for Vintage Item 27.">Item 27</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/B2DFDB/0a0a0a?text=Item+28');" data-product-name="Vintage Item 28" data-product-price="$58.00" data-product-image="https://placehold.co/600x700/B2DFDB/0a0a0a?text=Vintage+Item+28" data-product-description="A detailed description for Vintage Item 28.">Item 28</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/C5CAE9/0a0a0a?text=Item+29');" data-product-name="Vintage Item 29" data-product-price="$90.00" data-product-image="https://placehold.co/600x700/C5CAE9/0a0a0a?text=Vintage+Item+29" data-product-description="A detailed description for Vintage Item 29.">Item 29</div>
+                    <div class="product-slot" style="background-image: url('https://placehold.co/150x150/BBDEFB/0a0a0a?text=Item+30');" data-product-name="Vintage Item 30" data-product-price="$25.00" data-product-image="https://placehold.co/600x700/BBDEFB/0a0a0a?text=Vintage+Item+30" data-product-description="A detailed description for Vintage Item 30.">Item 30</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-section">
+            <div class="container">
+                <h2>About Us</h2>
+                <p style="font-style: italic; font-size: 1.2em; line-height: 1.8;">
+                    At Heaven Picked Vintage, we love vintage. Even better, we LOVE affordable vintage. Now, there’s many places to go for that, but the BEST option? Heaven…. Picked……. Vintage.
+                </p>
+                <p>We are passionate about bringing you unique and stylish pieces from bygone eras. Each item in our collection is carefully selected for its quality, character, and timeless appeal. Located in the beautiful city of Chilliwack, British Columbia, we aim to make sustainable fashion accessible and exciting for everyone.</p>
+                <p>Thank you for choosing Heaven Picked Vintage. We hope you find something you truly love!</p>
+            </div>
+        </section>
+
+        <section id="socials" class="page-section">
+            <div class="container">
+                <h2>Connect With Us</h2>
+                <p>Follow our journey and get the latest updates on new arrivals and special offers!</p>
+                <div class="social-links">
+                    <a href="https://instagram.com/heavenpickedvintage" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    <a href="https://tiktok.com/@heavenpickedvintage" target="_blank" rel="noopener noreferrer">TikTok</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="page-section">
+            <div class="container">
+                <h2>Get In Touch</h2>
+                <p>Have questions or want to visit our store? We'd love to hear from you!</p>
+                 <div class="contact-details">
+                    <h3>Our Information:</h3>
+                    <p><strong>Location:</strong> [Your Store Street Address], Chilliwack, BC [Your Postal Code]</p>
+                    <p><strong>Phone:</strong> [Your Phone Number]</p>
+                    <p><strong>Email:</strong> [Your Email Address]</p>
+                    <p><strong>Store Hours:</strong> [e.g., Tuesday - Saturday: 10 AM - 6 PM]</p>
+                </div>
+                <div class="map-container">
+                    <h3>Our Location in Chilliwack:</h3>
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d83634.12790997196!2d-122.03097964113547!3d49.1588197373908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54843f705185effd%3A0x726ca122f74858ba!2sChilliwack%2C%20BC!5e0!3m2!1sen!2sca!4v1717026989123!5m2!1sen!2sca"
+                        width="100%" 
+                        height="450" 
+                        style="border:0; border-radius: 8px; margin-top: 1rem;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+                <form id="contactForm" class="contact-form">
+                     <h3>Send Us a Message:</h3>
+                    <div>
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div>
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                     <div>
+                        <label for="subject">Subject:</label>
+                        <input type="text" id="subject" name="subject">
+                    </div>
+                    <div>
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
+                    <div id="form-message"></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <img src="https://storage.googleapis.com/gemini-prod/images/211dcfd1-66bc-44c0-b864-6b90b89f4750" alt="Heaven Picked Vintage Footer Logo" class="footer-logo">
+        <p>&copy; <span id="currentYear"></span> Heaven Picked Vintage. All Rights Reserved.</p>
+        <p>Chilliwack, British Columbia, Canada</p>
+    </footer>
+
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <img src="https://placehold.co/600x700/E0F2F7/007BFF?text=Product+Image" alt="Product Image" id="modalProductImage" class="modal-product-image">
+            <div class="modal-product-details">
+                <h3 id="modalProductName">Product Name</h3>
+                <p id="modalProductPrice" class="modal-product-price">$0.00</p>
+                <p id="modalProductDescription">Product description goes here. Tell your customers all about this amazing vintage item!</p>
+                <button class="add-to-cart-btn">Add to Cart (Example)</button>
+                <button class="styling-tips-btn" id="getStylingTipsBtn">✨ Get Styling Tips</button>
+                <div class="loading-indicator" id="stylingTipsLoader">Fetching style ideas...</div>
+                <div id="stylingTipsOutput"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearSpan = document.getElementById('currentYear');
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('form-message');
+            if(contactForm && formMessage){
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                    formMessage.style.color = 'var(--color-secondary)';
+                    contactForm.reset();
+                    setTimeout(() => { formMessage.textContent = ''; }, 5000);
+                });
+            }
+
+            const modal = document.getElementById('productModal');
+            const productSlots = document.querySelectorAll('.product-slot'); 
+
+            if (productSlots.length > 0 && modal) {
+                const closeModalBtn = modal.querySelector('.close-btn');
+                const modalImage = document.getElementById('modalProductImage');
+                const modalName = document.getElementById('modalProductName');
+                const modalPrice = document.getElementById('modalProductPrice');
+                const modalDescription = document.getElementById('modalProductDescription');
+                const getStylingTipsBtn = document.getElementById('getStylingTipsBtn');
+                const stylingTipsOutput = document.getElementById('stylingTipsOutput');
+                const stylingTipsLoader = document.getElementById('stylingTipsLoader');
+
+                productSlots.forEach(slot => {
+                    slot.addEventListener('click', function() {
+                        modalImage.src = this.dataset.productImage || 'https://placehold.co/600x700/E0F2F7/007BFF?text=Product+Image';
+                        modalName.textContent = this.dataset.productName || 'Vintage Item';
+                        modalPrice.textContent = this.dataset.productPrice || '$0.00';
+                        modalDescription.textContent = this.dataset.productDescription || 'Detailed product description here.';
+                        stylingTipsOutput.innerHTML = ''; 
+                        stylingTipsOutput.style.display = 'none';
+                        getStylingTipsBtn.disabled = false;
+                        modal.style.display = 'block';
+                    });
+                });
+
+                if(closeModalBtn){
+                    closeModalBtn.addEventListener('click', function() {
+                        modal.style.display = 'none';
+                    });
+                }
+
+                window.addEventListener('click', function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = 'none';
+                    }
+                });
+
+                if (getStylingTipsBtn) {
+                    getStylingTipsBtn.addEventListener('click', async function() {
+                        const productName = modalName.textContent;
+                        const productDescription = modalDescription.textContent;
+                        
+                        stylingTipsLoader.style.display = 'block';
+                        stylingTipsOutput.style.display = 'none';
+                        stylingTipsOutput.innerHTML = '';
+                        getStylingTipsBtn.disabled = true;
+
+                        const prompt = `You are a fashion assistant for Heaven Picked Vintage, a vintage clothing store. For a vintage item named "${productName}", which is described as: "${productDescription}", provide 2-3 concise and creative styling tips or outfit suggestions. Keep the tone enthusiastic and focused on a vintage aesthetic. Format each tip clearly, perhaps as a short paragraph or bullet points.`;
+
+                        try {
+                            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                            const payload = { contents: chatHistory };
+                            const apiKey = "";
+                            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                            
+                            const response = await fetch(apiUrl, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`API request failed with status ${response.status}`);
+                            }
+
+                            const result = await response.json();
+                            
+                            let generatedText = "Sorry, couldn't get styling tips at the moment.";
+                            if (result.candidates && result.candidates.length > 0 &&
+                                result.candidates[0].content && result.candidates[0].content.parts &&
+                                result.candidates[0].content.parts.length > 0) {
+                                generatedText = result.candidates[0].content.parts[0].text;
+                                generatedText = generatedText.replace(/\n\s?\*\s?/g, '<br>• ').replace(/\n/g, '<br>');
+                                if (generatedText.startsWith('<br>')) generatedText = generatedText.substring(4);
+                            }
+                            
+                            stylingTipsOutput.innerHTML = `<h4>✨ Styling Ideas for ${productName} ✨</h4><p>${generatedText}</p>`;
+                        } catch (error) {
+                            console.error("Error fetching styling tips:", error);
+                            stylingTipsOutput.innerHTML = `<p>Oops! We had a little snag trying to get those style tips. Please try again shortly!</p>`;
+                        } finally {
+                            stylingTipsLoader.style.display = 'none';
+                            stylingTipsOutput.style.display = 'block';
+                        }
+                    });
+                }
+            } 
+
+            const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+            const header = document.querySelector('.main-header');
+            const headerOffset = header ? header.offsetHeight : 70; // Adjusted fallback
+
+            dropdownLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId && targetId.startsWith('#')) {
+                        e.preventDefault();
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            const elementPosition = targetElement.getBoundingClientRect().top;
+                            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                            
+                            window.scrollTo({
+                                 top: offsetPosition,
+                                 behavior: "smooth"
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
